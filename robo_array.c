@@ -6,10 +6,12 @@ int main()
 
 	char x[7][5];
 	char check[2];
-	int countA = 4;
+	int countA = 0;
 	int countB = 0;
 	int countC = 4;
-	
+	int drehen = 0; 
+	int richtung = 1; 
+
 	setbuf(stdout, NULL);
 	
 		for(int c = 0 ; c < 7; c++)
@@ -55,43 +57,62 @@ int main()
 				printf("\n");
 			}
 
-			if(countA != 0 && countB == 0) 
+			
+
+			if(check[0] == 'd')
 			{
-				if(x[0][countA] == '-')
+				drehen = 1;
+				
+			}	
+			if(check[0] != 'd')
+			{
+				drehen = 0;
+			}
+
+			
+			if(drehen == 1)
+			{
+				if(richtung <= 4)
 				{
-					x[0][4] = '0';
+					richtung++;
 				}
 				else
 				{
-					x[0][countA] = '-';
-					countA--;
-					x[0][countA] = '0';
+					richtung = 1;
 				}
 			}
-			else if(countA == 0 && countB != 6) 
-			{
-				x[countB][0] = '-';
-				countB++;
-				x[countB][0] = '0';
+			
 
-			}
-			else if(countB == 6 && countA != 4) 
-			{
-				x[countB][countA] = '-';
-				countA++;
-				x[countB][countA] = '0';
-			}
-			else if(countB != 0 && countA == 4)
-			{
-				x[countB][countA] = '-';
-				countB--;
-				x[countB][countA] = '0';
-			}
 
-			if( countA == 0 && countB == 0)
+			if(check[0] == 'd' )
 			{
-				printf("Achtung Wand");
+				if(countA != 4) 
+				{
+					x[countB][countA] = '-';
+					countA++;
+					x[countB][countA] = '0';
+				}
 			}
+			else if(check[0] == 's') 
+			{
+				if(countB != 6)
+				{
+					x[countB][countA] = '-';
+					countB++;
+					x[countB][countA] = '0';
+				}
+			}
+			else if(richtung == 3)
+			{
+				printf("richtung 3");
+			}
+			else if(richtung == 4)
+			{	
+				printf("richtung 4");
+			}
+	
+
+
 
 			for(int c = 0 ; c < 7; c++)
 			{
@@ -111,6 +132,6 @@ int main()
 			scanf("%s", &check);
 
 		}
-		while(check[0] != 'y');
+		while(check[0] == 'w' || check[0] == 'd' || check[0] == 'a' || check[0] == 's');
 
 }
