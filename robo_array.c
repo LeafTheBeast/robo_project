@@ -33,6 +33,12 @@ int main()
 				{
 					printf("\n");
 				}
+
+				if(c == 3 && r == 4)
+				{
+					x[3][4] = '8';
+				}
+
 			}
 
 		}
@@ -69,10 +75,16 @@ int main()
 				x[countB][0] = '0';
 
 			}
-			else if(countB == 6 && countA != 6) 
+			else if(countB == 6 && countA != 4) 
 			{
 				x[countB][countA] = '-';
 				countA++;
+				x[countB][countA] = '0';
+			}
+			else if(countB != 0 && countA == 4)
+			{
+				x[countB][countA] = '-';
+				countB--;
 				x[countB][countA] = '0';
 			}
 
