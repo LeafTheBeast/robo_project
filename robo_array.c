@@ -88,6 +88,10 @@ int main()
 				x[countB][countA] = '0';
 			}
 
+			if( countA == 0 && countB == 0)
+			{
+				printf("Achtung Wand");
+			}
 
 			for(int c = 0 ; c < 7; c++)
 			{
