@@ -19,6 +19,14 @@ int main()
 			for(int r = 0 ; r < 5; r++)
 			{
 				x[c][r] = '-';
+
+				if(c >= 1 && c <=5)
+				{
+					if(r >= 1 && r <= 3)
+					{
+						x[c][r] = '=';
+					}
+				}
 			}
 		}
 	
@@ -86,29 +94,52 @@ int main()
 
 			if(check[0] == 'd' )
 			{
-				if(countA != 4) 
+				if(countB == 0 || countB == 6) 
 				{
-					x[countB][countA] = '-';
-					countA++;
-					x[countB][countA] = '0';
+					if(countA != 4) 
+					{	
+						x[countB][countA] = '-';
+						countA++;
+						x[countB][countA] = '0';
+					}
 				}
 			}
 			else if(check[0] == 's') 
 			{
-				if(countB != 6)
+				if(countA == 0 || countA == 4) 
 				{
-					x[countB][countA] = '-';
-					countB++;
-					x[countB][countA] = '0';
+					if(countB != 6)
+					{
+						x[countB][countA] = '-';
+						countB++;
+						x[countB][countA] = '0';
+					}
 				}
 			}
-			else if(richtung == 3)
+			else if(check[0] == 'a')
 			{
-				printf("richtung 3");
+				if(countB == 0 || countB == 6) 
+				{
+					if(countA != 0) 
+					{
+						x[countB][countA] = '-';
+						countA--; 
+						x[countB][countA] = '0'; 
+					}
+				}
+
 			}
-			else if(richtung == 4)
+			else if(check[0] == 'w')
 			{	
-				printf("richtung 4");
+				if(countA == 0 || countA == 4) 
+				{
+					if(countB != 0) 
+					{
+					x[countB][countA] = '-';
+					countB--; 
+					x[countB][countA] = '0'; 
+					}
+				}	
 			}
 	
 
