@@ -11,6 +11,7 @@ int main()
 	int countC = 4;
 	int drehen = 0; 
 	int richtung = 1; 
+	int fenster= 0; 
 
 	setbuf(stdout, NULL);
 	
@@ -142,7 +143,20 @@ int main()
 				}	
 			}
 	
-
+			
+			if(countA == 0 && check[0] == 'a')
+			{
+				fenster++;
+				if(fenster == 1) 
+				{
+				printf("Achtung!!! Hier kommt ein Fenster.\n");
+				}
+				else if(fenster == 2)
+				{
+					printf("Du bist leider aus dem Fenster gefallen. Schön blöd.\n");
+					break;
+				}
+			}
 
 
 			for(int c = 0 ; c < 7; c++)
