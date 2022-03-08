@@ -7,7 +7,7 @@ int main()
 	char x[7][5];
 	char check[2];
 	int countA = 4;
-	int countB = 6;
+	int countB = 0;
 	int countC = 4;
 	
 	setbuf(stdout, NULL);
@@ -49,10 +49,31 @@ int main()
 				printf("\n");
 			}
 
-			if(countA != 0) 
+			if(countA != 0 && countB == 0) 
 			{
-				x[0][countA] = '0';
-				countA--; 
+				if(x[0][countA] == '-')
+				{
+					x[0][4] = '0';
+				}
+				else
+				{
+					x[0][countA] = '-';
+					countA--;
+					x[0][countA] = '0';
+				}
+			}
+			else if(countA == 0 && countB != 6) 
+			{
+				x[countB][0] = '-';
+				countB++;
+				x[countB][0] = '0';
+
+			}
+			else if(countB == 6 && countA != 6) 
+			{
+				x[countB][countA] = '-';
+				countA++;
+				x[countB][countA] = '0';
 			}
 
 
