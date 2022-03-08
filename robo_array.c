@@ -43,17 +43,18 @@ int main()
 		
 		do
 		{
-			scanf("%c", check);
 		
-			if(check[0] != 'y')
+			for(int k = 0; k < 30; k++)
 			{
-				if(countA != 0)
-				{	
-					x[0][countA] = '0';
-					countA--;
-				}
-		
+				printf("\n");
 			}
+
+			if(countA != 0) 
+			{
+				x[0][countA] = '0';
+				countA--; 
+			}
+
 
 			for(int c = 0 ; c < 7; c++)
 			{
@@ -69,6 +70,8 @@ int main()
 				}
 
 			}
+
+			scanf("%s", &check);
 
 		}
 		while(check[0] != 'y');
