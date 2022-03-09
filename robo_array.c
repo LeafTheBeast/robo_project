@@ -5,11 +5,13 @@ int main()
 {
 
 	char x[7][5];
+	char floor[7][5];
 	char check[2];
 	int countA = 0;
 	int countB = 0;
 	int fenster= 0; 
 	int stuhl= 0;
+	int verlassen = 0;
 
 	setbuf(stdout, NULL);
 	
@@ -83,6 +85,25 @@ int main()
 						x[countB][countA] = '-';
 						countA++;
 						x[countB][countA] = '0';
+						
+					}
+					if(countA == 4 && countB == 0)
+					{
+						if(verlassen == 0)
+						{
+						printf("Wenn du möchtest, kannst du den Raum auch verlassen.\n");
+						printf("Drücke dazu einfach erneut die Taste 'w'.\n"); 
+						verlassen++;
+						}
+						else if(verlassen == 1)
+						{
+						verlassen++;
+						}
+					}
+
+					if(verlassen == 2)
+					{
+						break;
 					}
 				}
 			}
@@ -209,4 +230,134 @@ int main()
 		}
 		while(check[0] == 'w' || check[0] == 'd' || check[0] == 'a' || check[0] == 's' || check[0] == 'j');
 
+		
+		for(int c = 0 ; c < 7; c++)
+		{
+			for(int r = 0 ; r < 5; r++)
+			{
+				floor[c][r] = '-';
+
+				if(r == 0 || r == 4) 
+				{
+					x[c][r] = '|'; 
+				}
+
+
+				if(c >= 1 && c <=5)
+				{
+					if(r >= 1 && r <= 3)
+					{
+						x[c][r] = '=';
+					}
+				}
+			}
+		}
+
+		do
+		{
+
+			for(int k = 0; k < 30; k++)
+			{
+				printf("\n");
+			}
+
+			
+			
+
+
+			if(check[0] == 'd' )
+			{
+				if(countB == 0 || countB == 6) 
+				{
+					if(countA != 4) 
+					{	
+						x[countB][countA] = '-';
+						countA++;
+						x[countB][countA] = '0';
+						
+					}
+					if(countA == 4 && countB == 0)
+					{
+
+					}
+
+					if(verlassen == 2)
+					{
+						break;
+					}
+				}
+			}
+			else if(check[0] == 's') 
+			{
+				if(countA == 0 || countA == 4) 
+				{
+					if(countB != 6)
+					{
+						x[countB][countA] = '-';
+						countB++;
+						x[countB][countA] = '0';
+					}
+					
+
+					int countExtra = countB + 1; 
+					if(x[countExtra][countA] == '8')
+					{
+						printf("Vor dir steht ein Stuhl! Laufe weiter um dich hinzusetzen.\n");
+						printf("Du kannst mit der Taste 'j' auch über diesen hinweg springen.\n");
+						stuhl = 1; 
+
+					}
+
+					
+					if(x[3][4] == '-')
+					{
+						x[3][4] = '8';
+					}
+
+
+					
+				}
+			}
+			else if(check[0] == 'a')
+			{
+				if(countB == 0 || countB == 6) 
+				{
+					if(countA != 0) 
+					{
+						x[countB][countA] = '-';
+						countA--; 
+						x[countB][countA] = '0'; 
+					}
+				}
+
+			}
+			else if(check[0] == 'w')
+			{	
+				if(countA == 0 || countA == 4) 
+				{
+					if(countB != 0) 
+					{
+					x[countB][countA] = '-';
+					countB--; 
+					x[countB][countA] = '0'; 
+					}
+
+					
+					int countExtra = countB - 1; 
+					if(x[countExtra][countA] == '8')
+					{
+						printf("Vor dir steht ein Stuhl! Laufe weiter um dich hinzusetzen.\n");
+						printf("Du kannst mit der Taste 'j' auch über diesen hinweg springen.\n");
+						stuhl = 2; 
+					}
+
+					
+					if(x[3][4] == '-')
+					{
+						x[3][4] = '8';
+					}
+				}	
+			}
+		}
+		while(check[0] == 'w' || check[0] == 'd' || check[0] == 'a' || check[0] == 's' || check[0] == 'j');
 }
