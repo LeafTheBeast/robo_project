@@ -8,10 +8,8 @@ int main()
 	char check[2];
 	int countA = 0;
 	int countB = 0;
-	int countC = 4;
-	int drehen = 0; 
-	int richtung = 1; 
 	int fenster= 0; 
+	int stuhl= 0;
 
 	setbuf(stdout, NULL);
 	
@@ -20,6 +18,12 @@ int main()
 			for(int r = 0 ; r < 5; r++)
 			{
 				x[c][r] = '-';
+
+				if(r == 0 && c == 0) 
+				{
+					x[c][r] = '0'; 
+				}
+
 
 				if(c >= 1 && c <=5)
 				{
@@ -67,29 +71,6 @@ int main()
 			}
 
 			
-
-			if(check[0] == 'd')
-			{
-				drehen = 1;
-				
-			}	
-			if(check[0] != 'd')
-			{
-				drehen = 0;
-			}
-
-			
-			if(drehen == 1)
-			{
-				if(richtung <= 4)
-				{
-					richtung++;
-				}
-				else
-				{
-					richtung = 1;
-				}
-			}
 			
 
 
@@ -115,6 +96,25 @@ int main()
 						countB++;
 						x[countB][countA] = '0';
 					}
+					
+
+					int countExtra = countB + 1; 
+					if(x[countExtra][countA] == '8')
+					{
+						printf("Vor dir steht ein Stuhl! Laufe weiter um dich hinzusetzen.\n");
+						printf("Du kannst mit der Taste 'j' auch über diesen hinweg springen.\n");
+						stuhl = 1; 
+
+					}
+
+					
+					if(x[3][4] == '-')
+					{
+						x[3][4] = '8';
+					}
+
+
+					
 				}
 			}
 			else if(check[0] == 'a')
@@ -140,16 +140,46 @@ int main()
 					countB--; 
 					x[countB][countA] = '0'; 
 					}
+
+					
+					int countExtra = countB - 1; 
+					if(x[countExtra][countA] == '8')
+					{
+						printf("Vor dir steht ein Stuhl! Laufe weiter um dich hinzusetzen.\n");
+						printf("Du kannst mit der Taste 'j' auch über diesen hinweg springen.\n");
+						stuhl = 2; 
+					}
+
+					
+					if(x[3][4] == '-')
+					{
+						x[3][4] = '8';
+					}
 				}	
 			}
-	
+			else if(check[0] == 'j')
+			{
+				if(stuhl == 1)
+				{
+					x[countB][countA] = '-'; 
+					countB = countB + 2;
+					x[countB][countA] = '0'; 
+				}
+				else if(stuhl == 2) 
+				{
+					x[countB][countA] = '-';
+					countB = countB - 2;
+					x[countB][countA] = '0';
+				}
+
+			}
 			
 			if(countA == 0 && check[0] == 'a')
 			{
 				fenster++;
 				if(fenster == 1) 
 				{
-				printf("Achtung!!! Hier kommt ein Fenster.\n");
+				printf("Achtung!!! Auf dieser Seite sind offene Fenster.\n");
 				}
 				else if(fenster == 2)
 				{
@@ -177,6 +207,6 @@ int main()
 			scanf("%s", &check);
 
 		}
-		while(check[0] == 'w' || check[0] == 'd' || check[0] == 'a' || check[0] == 's');
+		while(check[0] == 'w' || check[0] == 'd' || check[0] == 'a' || check[0] == 's' || check[0] == 'j');
 
 }
